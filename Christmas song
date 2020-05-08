@@ -1,0 +1,69 @@
+christmas_days = [
+    "and a partridge in a pear tree",
+    "two turtle doves",
+    "three french hens",
+    "four calling birds",
+    "five golden rings",
+    "six geese a laying",
+    "seven swans a swimming",
+    "eight maids a milking",
+    "nine ladies dancing",
+    "ten lords a leaping",
+    "eleven pipers piping",
+    "twelve drummers drumming"
+]
+
+# This function will help us figure out
+# how to write "nth" day in our song.
+# Examples:
+# get_positional_word(1) -> "1st"
+# get_positional_word(2) -> "2nd"
+# get_positional_word(3) -> "3rd"
+# get_positional_word(4) -> "4th"
+# get_positional_word(11) -> "11th"
+def get_positional_word(n):
+    if n == 1:
+        return "1st"
+    elif n == 2:
+        return "2nd"
+    elif n == 3:
+        return "3rd"
+    elif n == 4:
+        return "4th"
+    elif n == 5:
+        return "5th"
+    elif n == 6:
+        return "6th"
+    elif n == 7:
+        return "7th"
+    elif n == 8:
+        return "8th"
+    elif n == 9:
+        return "9th"
+    elif n == 10:
+        return "10th"
+    elif n == 11:
+        return "11th" 
+    elif n == 12:
+        return "12th"
+    
+
+# Print out the 12 days here!
+days = 12
+isl = 1
+for i in range(days):
+    vacs = isl - 1
+    if vacs < 1:
+        print ("On the", get_positional_word(isl), "day of Christmas, my true love gave to me")
+        for day in christmas_days[0 : isl]:
+            day = vacs
+            print((christmas_days[day])[4::])
+            vacs += 1
+        isl += 1
+    elif vacs < 12:
+        print ("\nOn the", get_positional_word(isl), "day of Christmas, my true love gave to me")
+        for day in christmas_days[0 : isl]:
+            day = vacs
+            print(christmas_days[day])
+            vacs -= 1
+        isl += 1
