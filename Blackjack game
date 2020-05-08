@@ -132,3 +132,41 @@ def play_game(initial_bet):
 if __name__ == "__main__":
     INITIAL_BET = int(input("Please insert how much $$$ you want to start with: "))
     play_game(INITIAL_BET)
+///
+#blackjack_test.py
+import unittest
+import blackjack
+
+class BlackjackTest(unittest.TestCase):
+	# This is where you're tests can go!
+	# Each test must take "self" as an arguement.
+	def test_is_bust_1(self):
+		testing_bust = blackjack.is_bust(["5", "3"])
+		self.assertEqual(testing_bust, False)
+
+	def test_is_bust_2(self):
+		testing_bust_again = blackjack.is_bust(["2", "3", "4"])
+		self.assertEqual(testing_bust_again, False)
+		
+	def test_is_bust_final(self):
+	    testing_bust_no_more = blackjack.is_bust(["2", "7", "5"])
+	    self.assertEqual(testing_bust_no_more, False)
+
+	def test_get_card_value_1(self):
+		test_card_value = blackjack.get_card_value(["2", "3", "4"])
+		self.assertEqual(test_card_value, 9)#9
+		
+	def test_get_card_value_2(self):
+	    test_card_value_2 = blackjack.get_card_value(["5", "5", "2"])
+	    self.assertEqual(test_card_value_2, 12)#12
+	    
+	def test_get_card_value_final(self):
+	    test_card_value_final = blackjack.get_card_value(["A", "A", "A"])
+	    self.assertEqual(test_card_value_final, 13)#13
+
+	# Write three more tests!
+
+# Don't touch anything under this.
+if __name__ == '__main__':
+    unittest.main()
+///
