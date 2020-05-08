@@ -1,0 +1,101 @@
+seating_chart = []
+
+def initialize_pricing():
+    """
+    Initializes the seating_chart array. Each section is 
+    initialized with 30 rows, each with 10 available seats.
+
+    Doesn't return anything.
+    """  
+    global seating_chart
+    seating_chart = [[10 for j in range(20)] for i in range(30)]
+def get_price(row, section):
+    """
+    Gets the price of a ticket in section section and row row.
+
+    Parameters:
+    row: integer between 0 and 29 representing the row number.
+    section: integer between 0 and 19 representing the section number.
+
+    This function does not need to update seating_chart.
+
+    Returns the price of the ticket, in dollars.
+    """
+    row = row * 50
+    if section < 10:
+      section = section * 80
+    else:
+      section = abs(19 - section) * 80
+    price = 2000 - row + section
+    return price
+
+def get_price_multiple_tickets(tickets):
+    """
+    Gets the cumulative price for multiple tickets. Use get_price to
+    help you out.
+
+    Parameters:
+    tickets: List of lists. Each list has a row in its 0 position and
+    and a section in its 1 position.
+
+    Returns: the price of all of the tickets.
+    """
+    ticket_price = 0
+    for i in tickets:
+        ticket_price += get_price(i[0], i[1])
+    return ticket_price
+
+def can_reserve_tickets(row, section, num_of_tickets):
+    """
+    Checks if there are num_of_tickets available in section at the given 
+    row and section. 
+
+    Parameters:
+    row: integer between 0 and 29 representing the row number.
+    section: integer between 0 and 19 representing the section number.
+    
+
+    Returns True if there is, False otherwise.
+    """
+    if seating_chart[row][section] >= num_of_tickets:
+        return True
+    else:
+        return False
+
+def reserve_tickets(ticket_reservations):
+    """
+    Reserves the tickets for a user.
+
+    Parameters:
+    ticket_reservations: Each list in tickets is three element:
+     -  the first is a row number.
+     -  the second is a column number.
+     -  the last is the number of tickets.
+
+    If there are not enough tickets available for a section, raise a ValueError.
+
+    Returns the cost of all of the tickets.
+    """
+    cost_ticket = 0
+    for ticket in ticket_reservations:
+        if can_reserve_tickets(ticket[0], ticket[1], ticket[2]):
+            cost_ticket += get_price(ticket[0], ticket[1])*ticket[2]
+            seating_chart[ticket[0]][ticket[1]] -= ticket[2]
+        else:
+            raise ValueError("Not enough tickets")
+    return cost_ticket
+
+def get_cheapest_tickets(num_of_tickets):
+    """
+    Finds the cheapest row and section with at least num_of_tickets available.
+    
+    Returns the lowest price of getting that many tickets in one section.
+    """
+    count = 0
+    costs = []
+    for row in range(30):
+        for section in range(20):
+            if can_reserve_tickets(row, section, num_of_tickets):
+                costs.append(get_price(row, section))
+    return min(costs) * num_of_tickets
+    
