@@ -1,0 +1,51 @@
+# Capitol Maps: Find your way ar
+a = float(input("Insert your latitude: "))
+b = float(input("Insert your longitude: "))
+
+if (a > 38.902649):
+    print("You are north of K St")
+else:
+    print("You are south of K St")
+    
+if (a > 38.897789):
+    print("You are north of the White House")
+else:
+    print("You are south of the White House")
+if (b > -77.036562):
+    print("You are east of the White House")
+else:
+    print("You are west of the White House")
+    
+if (a > 38.921669):
+    print("You are north of Downing Hall")
+else:
+    print("You are south of Downing Hall")
+if (b > -77.021361):
+    print("You are east of Downing Hall")
+else:
+    print("You are west of Downing Hall")
+    
+if (a > 38.909760):
+    print("You are north of Dupont Circle")
+else:
+    print("You are south of Dupont Circle")
+if (b > -77.043479):
+    print("You are east of Dupont Circle")
+else:
+    print("You are west of Dupont Circle")
+    
+if (a > 38.897698):
+    print("You are north of Union Station")
+else:
+    print("You are south of Union Station") 
+if (b > -77.007200):
+    print("You are east of Union Station")
+else:
+    print("You are west of Union Station")
+    
+lat_miles = ((38.921669 - a) * 53)
+long_miles = ((77.021361 + b) * 69.172)
+dist = round((((lat_miles ** 2) + (long_miles ** 2) ) ** 0.53), 1)
+print ("You are " + str(dist) + " miles from Downing Hall.")
+
+
