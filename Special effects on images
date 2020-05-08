@@ -133,3 +133,14 @@ def threshold(image_matrix,
             else:
                 image_matrix[i][j] = image_matrix[i][j]
     return image_matrix
+    
+///
+#image_playground.py
+import filters
+import image_io
+
+# Use this playground to try out different functions!
+image_matrix = image_io.read_file("images/paper.jpeg")
+results_matrix = filters.blur(image_matrix)
+image_io.write_to_file("outputs/paper_blur.jpeg", results_matrix)
+///
