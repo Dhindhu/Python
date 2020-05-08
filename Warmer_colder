@@ -1,0 +1,36 @@
+import random
+rand_no = random.randint(0, 100)
+count = 1
+last_user_input = 0
+
+while True:
+    user_input = int(input("Guess the number "))
+    if (abs(rand_no - user_input) < 10 and abs(rand_no - user_input) > 0):
+        if (count > 1):
+            if (abs(rand_no - user_input) > abs(rand_no - last_user_input) ):
+                print("You are getting colder!")
+            elif (abs(rand_no - user_input) < abs(rand_no - last_user_input)):
+                print("You are getting warmer!")
+        print ("You are red hot!")
+    elif (abs(rand_no - user_input) < 20 and abs(rand_no - user_input) >= 10):
+        if (count > 1):
+            if (abs(rand_no - user_input) > abs(rand_no - last_user_input) ):
+                print("You are getting colder!")
+            elif (abs(rand_no - user_input) < abs(rand_no - last_user_input)):
+                print("You are getting warmer")
+        print ("You are warm!")
+    elif (abs(rand_no - user_input) >= 20):
+        if (count > 1):
+            if (abs(rand_no - user_input) > abs(rand_no - last_user_input) ):
+                print("You are getting colder!")
+            elif (abs(rand_no - user_input) < abs(rand_no - last_user_input)):
+                print("You are getting warmer!")
+        print ("You are cold!")
+    elif (rand_no == user_input):
+        print("You are correct. You got it after", count, "guesses.")
+        break
+   
+    last_user_input = user_input
+    count += 1
+    
+user_input
