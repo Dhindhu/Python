@@ -1,0 +1,79 @@
+# An encoder/decoder for our spies to secretly send messages.
+
+encryption_option = input("Would you like to Encode or Decode? ") 
+ciph_num = int(input("What is your cipher number? "))
+message = input("What is your message? ")
+
+# should_encode will be true if the user 
+should_encode = "encode" in encryption_option.lower()
+should_decode = "decode" in encryption_option.lower()
+
+# Ask the user for their message and cipher number.
+if should_encode:
+    # Your code here!
+    final_message = ""
+    for i in range(len(message)):
+        char = message[i]
+        if char == message[i]:
+            if char == " ":
+                new_message = " "
+                final_message = final_message + new_message
+            elif ((ord(char) >= 65 and ord(char) <= 90)):
+                test = ord(char) + ciph_num
+                if test > 90:
+                    first_diff = 90 - ord(char)
+                    sec_diff = ciph_num - first_diff
+                    test = sec_diff + 64
+                new_message = chr(test)
+                final_message = final_message + new_message
+            elif (ord(char) >= 97 and ord(char) <= 122):
+                test = ord(char) + ciph_num
+                if test > 122:
+                    first_diff = 122 - ord(char)
+                    sec_diff = ciph_num - first_diff
+                    test = sec_diff + 96
+                new_message = chr(test)
+                final_message = final_message + new_message
+            else:
+                new_message = char
+                final_message = final_message + new_message
+        if len(final_message) == len(message):
+            print(final_message)
+    pass
+elif should_decode:
+    final_message = ""
+    for i in range(len(message)):
+        char = message[i]
+        if char == message[i]:
+            if char == " ":
+                new_message = " "
+                final_message = final_message + new_message
+            elif ((ord(char) >= 65 and ord(char) <= 90)):
+                test = ord(char) - ciph_num
+                if test < 65:
+                    first_diff = ord(char) - 65
+                    sec_diff = ciph_num - first_diff
+                    test = 91 - sec_diff
+                new_message = chr(test)
+                final_message = final_message + new_message
+            elif (ord(char) >= 97 and ord(char) <= 122):
+                test = ord(char) - ciph_num
+                if test < 97:
+                    first_diff = ord(char) - 97
+                    sec_diff = ciph_num - first_diff
+                    test = 123 - sec_diff
+                new_message = chr(test)
+                final_message = final_message + new_message
+            else:
+                new_message = char
+                final_message = final_message + new_message
+        if len(final_message) == len(message):
+            print(final_message)
+    # Your code here for extra credit
+    # Focus on getting the code above to work first.
+    pass
+else:
+    # Print a nice notice that we only support encrypt/decrypt
+    # Your code here!
+    print ("We only support encrypt/decrypt please")
+    pass
