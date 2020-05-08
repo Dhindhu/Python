@@ -1,0 +1,127 @@
+# Who wants to be a Millionaire??
+
+# The progression in this "short" version of millionaire should be:
+# 1 answer correct: $500
+# 2 answers correct: $1000
+# 3 answers correct: $5000
+# 4 answers correct: $20000
+# 5 answers correct: $50000
+# 6 answers correct: $250000
+# 7 answers correct: $500000
+# 8 answers correct: $1000000
+
+# Your code here!
+import random
+intro = input("Welcome to Millionaire! What is your name? ")
+print ("Currently you have made $0 ")
+print ("How many continents are in the world? ")
+print ("a. 4\nb. 5\nc. 6\nd. 7\ne.Call a friend")
+ans1 = input(">> ")
+if (ans1 == "e"):
+    ehg = 100
+    i = random.randint(0, ehg)
+    if (i <= 84):
+        ans1 = "d"
+if (ans1 == "d"):
+    print("Correct! Currently you have made $500")
+    print("How many states are in Nigeria?")
+    print("a. 22\nb. 30\nc. 52\nd. 36\ne.Call a friend")
+    ans2 = input(">> ")
+    if (ans2 == "e"):
+        ehg = 100
+        i = random.randint(1, ehg)
+        if (i <= 85):
+            ans2 = "d"
+    if (ans2 == "d"):
+        print ("Correct! Currently you have made $1000")
+        print ("How many local governments are in Nigeria?")
+        print ("a. 299\n b. 199\nc. 774\nd. 360\ne.Call a friend")
+        ans3 = input(">> ")
+        if (ans3 == "e"):
+            ehg = 100
+            i = random.randint(1, ehg)
+            if (i <= 85):
+                ans3 = "c"
+        if (ans3 == "c"):
+            print("Correct! Currently you have made $5000")
+            print("Who was the first president of Nigeria?")
+            print("a. Olusegun Obasanjo\nb. Nnamdi Azikiwe\nc. Umaru Yaradua\nd. Goodluck Jonathan\ne.Call a friend")
+            ans4 = input(">> ")
+            if (ans4 == "e"):
+                ehg = 100
+                i = random.randint(1, ehg)
+                if (i <= 85):
+                    ans4 = "b"
+            if (ans4 == "b"):
+                print("Correct! Currently you have made $20000")
+                print ("Who is the fastest man in the world?")
+                print ("a. Daniel Sloan\nb. Ngugu Wa'tiyongo\nc. Usian Bolt\nd. Dindu Alim\ne.Call a friend")
+                ans5 = input(">> ")
+                if (ans5 == "e"):
+                    ehg = 100
+                    i = random.randint(1, ehg)
+                    if (i <= 85):
+                        ans5 = "c"
+                if (ans5 == "c"):
+                    print ("Correct! Currently you have made $50000")
+                    print ("Which is a West Africa state?")
+                    print ("a. South Africa\nb. Ethiopa\nc. Togo\nd. Kenya\ne.Call a friend")
+                    ans6 = input(">> ")
+                    if (ans6 == "e"):
+                        ehg = 100
+                        i = random.randint(1, ehg)
+                        if (i <= 85):
+                            ans6 = "c"
+                    if (ans6 == "c"):
+                        print ("Correct! Currently you have made $250000")
+                        print ("Who invented electriity?")
+                        print ("a. Thomas Edison\nb. The Wright Brothers\nc. Williams Shakespear\nd. Benjamin Franklin\ne.Call a friend")
+                        ans7 = input(">> ")
+                        if (ans7 == "e"):
+                            ehg = 100
+                            i = random.randint(1, ehg)
+                            if (i <= 85):
+                                ans7 = "d"
+                        if (ans7 == "d"):
+                            print("Correct! Currently you have made $500000")
+                            print ("How many countries are in Africa?")
+                            print ("a. 66\nb. 89\nc. 54\nd. 55\ne.Call a friend")
+                            ans8 = input(">> ")
+                            if (ans8 == "e"):
+                                ehg = 100
+                                i = random.randint(1, ehg)
+                                if (i <= 85):
+                                    ans8 = "c"
+                            if (ans8 == "c"):
+                                print ("Correct! Currently you have made $1000000")
+                                print ("You are a millionaire")
+                            else:
+                                print("I'm sorry, that is incorrect")
+                        else:
+                            print("I'm sorry, that is incorrect")
+                    else:
+                        print("I'm sorry, that is incorrect")
+                    
+                else:
+                    print("I'm sorry, that is incorrect")
+            else:
+                print("I'm sorry, that is incorrect")
+        else:
+            print("I'm sorry, that is incorrect")
+    else:
+        print("I'm sorry, that is incorrect")
+else:
+    print("I'm sorry, that is incorrect")
+    
+///
+answers.txt:
+d
+d
+c
+b
+c
+c
+d
+c
+///
+    
