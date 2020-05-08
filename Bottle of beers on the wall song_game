@@ -1,0 +1,30 @@
+def multiples_of(base, limit):
+    base_multiple = limit // base
+    for multiply in range(base_multiple + 1):
+        if multiply > 0:
+            print (base * multiply)
+    return base_multiple
+
+
+
+bottles = int(input("How many bottles would you start with? "))
+bottle = bottles
+for i in range(bottles):
+  i = bottles 
+  if i == 1:
+      print ("1 bottle of beer on the wall, 1 bottle of beer")
+      print ("Take one down, pass it around, no more bottles of beer on the wall.")
+      print ("No more bottles of beer on the wall, no more bottles of beer")
+      print("Go to the store and buy some more, " + str(bottle) + " bottles of beer on the wall.")
+  elif i > 1:
+      print (str(i), "bottles of beer on the wall,", str(i), "bottles of beer")
+      print ("Take one down, pass it around," + str(i -1) + " bottles of beer on the wall.")
+  bottles = bottles - 1
+
+
+def multiples_to_target_number(arr, num):
+    for i in arr:
+        for j in arr[arr.index(i) + 1::]:
+            if i * j == num:
+                return True
+    return False
