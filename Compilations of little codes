@@ -1,0 +1,322 @@
+# 0) Write a function named double which has one parameter,
+#    and returns that parameter doubled.
+#
+# e.g double(7) -> 14
+#     double(-9) -> -18
+def double(x):
+    value = x * 2
+    return value
+
+# 1) Write a function named is_negative which has one parameter,
+#    and returns True if the parameter is a negative value.
+#
+# e.g. is_negative(99) -> False
+#      is_negative(-4.5) -> True
+#      is_negative(0) -> False
+def is_negative(x):
+    if x < 0 :
+        return True
+    else:
+        return False
+
+
+# 2) Write a function named absolute which has one parameter,
+#    and returns the absolute value of the parameter. Do not 
+#    use the built in abs function. Use the function
+#    you implemented in 1.
+#
+# e.g. absolute(7.6) -> 7.6
+#      absolute(-14) -> 14
+#      absolute(0) -> 0
+def absolute(x):
+    if x < 0:
+        x = x * -1
+    #elif x > 0:
+     #   value = x * 1
+    return x
+
+
+# 3) Write a function called is_even which takes one parameter,
+#    and returns True if the parameter is even.
+#
+# e.g. is_even(7) -> False
+#      is_even(12) -> True
+def is_even(x):
+    if x % 2 == 0:
+        return True
+    else:
+        return False
+
+# 4) Write a function called product_and_two which takes two
+#    parameters and returns the product of the two values plus
+#    two.
+#
+# e.g. product_and_two(4, 7) -> 30
+#      product_and_two(10, 7) -> 72
+#      product_and_two(9, 0) -> 2
+def product_and_two(x, y):
+    value = (x * y) + 2
+    return value
+
+# 5) Write a function called power which takes two parameters
+#    and returns the first one raised to the power of the second
+#    one.
+#
+#    Do not use the double * operator or the math pow function.
+#
+# e.g. power(2, 5) -> 32
+#      power(4, 3) -> 64
+def power(x, y):
+    value = 1
+    for i in range(y):
+        value = value * x
+    return value
+
+# 6) Write a function called vowel_count which takes a string
+#    parameter and returns the number of vowels in the string.
+#
+#    Don't count y's as vowels if they are at the end of a word.
+#    If they are in the middle of a word, count them.
+#
+# e.g. vowel_count("Free Nachos Today") -> 6
+#      vowel_count("Hysteria") -> 4
+#      vowel_count("Scooby Mystery") -> 4
+def vowel_count(string):
+    count = 0
+    list_of_vowels = "aeiouyAEIOUY"
+    list_of_vowels_two = "aeiouAEIOU"
+    new_arr = string.split(" ")
+    for word in new_arr:
+        for letter in range(len(word)):
+          if letter+1 == len(word):
+              #print (word[letter])
+              if word[letter] in list_of_vowels_two:
+                  count += 1
+                  #print(word[letter])
+              else:
+                  #print(word[letter])
+                  pass
+          elif word[letter] in list_of_vowels:
+              count += 1
+              #print(word[letter])
+          else:
+              #print(word[letter])
+              pass
+    return count
+
+# 7) Write a function called sine which takes two parameters,
+#    opposite_side and adjacent_side, which represent the sides
+#    of a right triangle opposite the angle we want the sine of.
+#
+#    Your answer should be returned to 3 decimal places.
+#
+#    You may find an equation for sine on this wikipedia page:
+#    https://en.wikipedia.org/wiki/Sine
+#
+# e.g. sine(4, 3) -> .8
+#      sine(3, 4) -> .6
+#      sine(5, 12) -> .385
+def sine(opposite_side, adjacent_side):
+    hypothenus = ((opposite_side**2) + (adjacent_side**2)) ** 0.5
+    answer = (opposite_side / hypothenus)
+    answer = round(answer, 3)
+    return answer
+# 8) Write a function called is_palindrome that takes one
+#    parameter (which is a string) and returns True if the
+#    string is a palindrome (the same forwards and backwards).
+#
+#    Note that spaces do not perclude a string from being a
+#    palindrome.
+#
+# e.g. is_palindrome("madam") -> True
+#      is_palindrome("sends") -> False
+#      is_palindrome("a man a plan a canal panama") -> True
+def is_palindrome(string):
+    if string[0::] == string[::-1]:
+        return True
+    else:
+        return False
+
+# 9) Write a function dc_flags which takes one parameter n and
+#    prints n flags, with each one numbered. It should return nothing.
+#
+# e.g. dc_flags(1)
+# Output:
+#    1
+#  * * *
+#=========
+#=========
+#
+#dc_flags(3)
+# Output:
+#    1
+#  * * * 
+#=========
+#=========
+#    2
+#  * * * 
+#=========
+#=========
+#    3
+#  * * * 
+#=========
+#=========
+def dc_flags(x):
+    for i in range(1,x+1):
+        print(str(i).center(9))
+        print("* * *".center(9))
+        print("=========")
+        print("=========")
+print(dc_flags(5))
+
+# 10) Write a function named first_substr which takes two parameters,
+#     haystack and needle. Both parameters are strings. Your function
+#     should return the first index of the first occurence of needle
+#     inside haystack. If needle does not occur in haystack, return 
+#     -1. Do not use the str.index method. You may use the "in"
+#     keyword (but do not need to).
+#
+# e.g. first_substr("Haystack", "stack") -> 3
+#      first_substr("Hollywood", "Hollywoo") -> 0
+#      first_substr("team", "eye") -> -1
+def first_substr(haystack, needle):
+    par_1 = haystack
+    par_2 = needle
+    answer = par_1.find(par_2)
+    return answer
+
+# 11) Write a function called product_of_array which takes one parameter,
+#      a list of integers and returns a list where each index is the
+#      product of all of the other values in the array.
+#
+# e.g. product_of_array([2, 4, 1]) -> [4, 2, 8]
+#      product_of_array([3, 5, 7, 9]) -> [315, 189, 135, 105]
+def product_of_array(x):
+    final_arr = []
+    for i in range(len(x)):
+        product = 1        
+        first = x.pop(i)
+        for item in x:
+          product *= item
+        x.insert(i, first)
+        final_arr.append(product)
+    return final_arr
+              
+    
+# 12) Write a function named largest_pos_subseq which takes 
+#     one parameter. This parameter is an array which contains 
+#     positive and negative integers. You should return the
+#     largest sum of a subsequence which only contains positive
+#     integers. The subsequence can be of any length. 
+#
+# e.g. largest_pos_subseq([3, -2, 2, 2]) -> 4
+#      largest_pos_subseq([2, -4, 9, -3]) -> 9
+#      largest_pos_subseq([-4, 5, 6, 1, -1]) -> 12
+def largest_pos_subseq(x):
+    previous = 0
+    current = 0
+    for i in (x):
+        if i >= 0:
+            current += i
+        else:
+            if current > previous:
+                previous = current
+            else:
+                previous = previous
+            current = 0
+    return previous
+        
+
+# 13) Write a function called similar_words which takes two
+#     one-word strings as parameters. This function should return
+#     True if the words are either exactly the same or one letter
+#     off. Otherwise, it should print false. This function wors
+#     regardless of capitalization.
+#
+# e.g. similar_words("effect", "affect") -> True
+#      similar_words("fishing", "bashing") -> False
+#      similar_words("HELLO", "hella") -> True
+def similar_words(x, y):
+    count = 0
+    new_x = x.lower()
+    new_y = y.lower()
+    if len(x) == len(y):
+        for i in range(len(x)):
+            if new_x[i] == new_y[i]:
+                count += 1
+    else:
+        return False
+    if count == len(x) or count == (len(x)-1):
+        return True
+    else:
+        return False
+
+# 14) Write a function named pi which takes no parameters.
+#     This function may not use the built in math.pi and may
+#     not simply return the value; it must be calculated.
+#
+#     You may calculate pi in one of three ways:
+#     1) Using the Gregory-Leibniz series.
+#     2) Imagine you have a circle with radius 1 and a square
+#        with radius 1 such that the circle fits perfectly within
+#        the square. The proportion of the area of the circle and
+#        the area of the square is related to pi. You can "throw"
+#        an arbitrary, large number of darts at the square and see
+#        what percent land in the circle, then use that to caluclate
+#        pi.
+#     3) Use the fact that the limit of the function:
+#        x * sin(180 / x) = pi
+#
+#     Your solution must be accurate to 3 decimal spots.
+def pi():
+  denominator = 1
+  count = 4/denominator
+  for pie in range(200):
+    denominator += 2
+    count -= 4/denominator
+    denominator += 2
+    count += 4/denominator
+  return (count)
+
+# 15) Write a function named random_three_letter_word which takes
+#     no parameters. This should return a random three letter string
+#     where:
+#
+#     - The first letter is either "b", "t" or "m"
+#     - The second letter is a vowel (don't include "y")
+#     - The final letter is any consanent
+#
+# e.g. random_three_letter_word() -> "bag"
+#      random_three_letter_word() -> "muy"
+import random
+def random_three_letter_word():
+    arr_one = ['b', 't', 'm']
+    arr_two = ["a", "e", "i", "o", "u"]
+    arr_three = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
+    i = random.randint(0, 2)
+    first_word = arr_one[i]
+    j = random.randint(0, 4)
+    second_word = arr_two[j]
+    k = random.randint(0, 20)
+    third_word = arr_three[k]
+    word = str(first_word + second_word + third_word)
+    return word
+
+# Extra credit) Write a function named population_growth which takes
+#     three parameters, original_population, annum_growth and num_years.
+#     This function returns the final population after the num_years.
+#
+#     Each year the population grows annum_growth from that year's.
+#     population. The population grows to a value rounded to the nearest
+#     whole number.
+#
+# e.g. population_growth(17802, .09, 3) -> 23054
+def population_growth(original_population, annum_growth, num_years):
+    if num_years < 0:
+        raise ValueError
+    for year in range(num_years):
+      prod_pop = original_population * annum_growth
+      new_population = prod_pop + original_population
+      original_population = new_population
+      original_population = round(original_population)
+    return original_population
