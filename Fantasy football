@@ -1,0 +1,78 @@
+# Whose ready for some football?
+
+# Open players.txt to get a list of players and positions.
+
+# We want to build the best team of:
+# 1 QB
+# 2 RB
+# 2 WR
+# 1 TE
+# 1 RB or WR or TE
+
+# Your code here!
+import operator
+players_file = open('players.txt', "r")
+QB = {}
+RB = {}
+WR = {}
+TE = {}
+for line in players_file:
+    store_values = line.split()
+    value = ((int(store_values[2]) // 25) + (int(store_values[3]) * 4) + (int(store_values[4]) // 10) + (int(store_values[5]) * 6) + (int(store_values[6]) // 10) + (int(store_values[7]) * 6))
+    if line[0] == "W":
+        WR[store_values[1]] = value
+    elif line[0] == "T":
+        TE[store_values[1]] = value
+    elif line[0] == "R":
+        RB[store_values[1]] = value
+    elif line[0] == "Q":
+        QB[store_values[1]] = value
+players_file.close()
+
+sorted_qb = sorted(QB.items(), key=operator.itemgetter(1))
+name_of_best_qb = sorted_qb[-1][0]
+point_of_best_qb = sorted_qb[-1][1]
+sorted_qb.pop()
+
+sorted_rb = sorted(RB.items(), key=operator.itemgetter(1))
+name_of_best_rb = sorted_rb[-1][0]
+point_of_best_rb = sorted_rb[-1][1]
+sorted_rb.pop()
+
+name_of_best_rb2 = sorted_rb[-1][0]
+point_of_best_rb2 = sorted_rb[-1][1]
+sorted_rb.pop()
+
+sorted_wr = sorted(WR.items(), key=operator.itemgetter(1))
+name_of_best_wr = sorted_wr[-1][0]
+point_of_best_wr = sorted_wr[-1][1]
+sorted_wr.pop()
+
+#sorted_wr2 = sorted(WR.items(), key=operator.itemgetter(1))
+name_of_best_wr2 = sorted_wr[-1][0]
+point_of_best_wr2 = sorted_wr[-1][1]
+sorted_wr.pop()
+
+sorted_te = sorted(TE.items(), key=operator.itemgetter(1))
+name_of_best_te = sorted_te[-1][0]
+point_of_best_te = sorted_te[-1][1]
+sorted_te.pop()
+
+rb_max = -1 if len(sorted_rb) == 0 else sorted_rb[-1][1]
+wr_max = -1 if len(sorted_wr) == 0 else sorted_wr[-1][1]
+te_max = -1 if len(sorted_te) == 0 else sorted_te[-1][1]
+max_point = max(rb_max, wr_max, te_max)
+if rb_max == max_point:
+    player_name = sorted_rb[-1][0]
+elif wr_max == max_point:
+    player_name = sorted_wr[-1][0]
+elif te_max == max_point:
+    player_name = sorted_te[-1][0]
+    
+print ("QB", name_of_best_qb,  point_of_best_qb)
+print ("RB1", name_of_best_rb, point_of_best_rb)
+print ("RB2", name_of_best_rb2, point_of_best_rb2)
+print ("WR1", name_of_best_wr, point_of_best_wr)
+print ("WR2", name_of_best_wr2, point_of_best_wr2)
+print ("TE", name_of_best_te, point_of_best_te)
+print ("FLEX", player_name, max_point)
