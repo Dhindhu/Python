@@ -1,0 +1,134 @@
+"""A game of Blackjack that does everything it should do.Functions call other functions"""
+import random
+import time
+
+def get_card_value(cards):
+    """
+    Gets the value of the cards played
+    """
+    total = 0
+    aces = 0
+    for cad in cards:
+        if cad in ("2", "3", "4", "5", "6", "7", "8", "9", "10"):
+            total += int(cad)
+        elif cad == "A":
+            aces += 10
+        else:
+            total += 10
+    while aces != 0:
+        if total + 11 <= 21:
+            total += 11
+        else:
+            total += 1
+        aces -= 10
+    return total
+
+def get_dealer_hand():
+    """
+    Gets the dealers hand
+    """
+    dealer = []
+    while  get_card_value(dealer) < 17:
+        dealer.append(get_card())
+    return dealer
+
+def is_bust(cards):
+    """ returns True if card value < 21, False if not"""
+    return bool(get_card_value(cards) > 21)
+        #return True
+    #else:
+        #return False
+
+
+def get_card():
+    """I don't even know what this does. Checks if card is among a 'special' group of cards."""
+    card = random.randint(1, 13)
+    face_cards = {1: "A", 11: "J", 12: "Q", 13: "K"}
+    if card in face_cards:
+        return face_cards[card]
+    return str(card)
+
+def get_user_decision():
+    """
+    Gets the users decision
+    """
+    user_decision = input("Would you like to hit (H) or stay (S)? ")
+    user_decision = user_decision.upper()
+    while user_decision not in ("H", "S"):
+        print("Please insert H or S")
+        user_decision = (input("Would you like to hit (H) or stay (S)?"))
+    return user_decision
+
+def cards_print_out(purp, crd):
+    """
+    Prints the cards
+    """
+    result = (purp + " cards are")
+    for card in crd:
+        result += " " + str(card)
+    return result
+
+
+def play_a_turn():
+    """
+    Decides if a turn is to be played by the user_decision
+    """
+    cards = [get_card(), get_card()]
+    user_decision = ""
+    while user_decision != "S":
+        print(cards_print_out("Your", cards))
+        user_decision = get_user_decision()
+        if user_decision == "H":
+            cards.append(get_card())
+        if is_bust(cards):
+            print("You busted! You lose!")
+            return False
+        break
+    dealer_cards = get_dealer_hand()
+    print(cards_print_out("Your", cards))
+    print(cards_print_out("Dealer's", dealer_cards))
+    your_value = get_card_value(cards)
+    dealers_value = get_card_value(dealer_cards)
+    if your_value > dealers_value and is_bust(dealer_cards):
+        print("You win!")
+    else:
+        print("You lose!")
+    return bool(your_value > dealers_value and is_bust(dealer_cards))
+
+
+def get_time(start_time):
+    """
+    Gets the time game was played
+    """
+    time_in_sec = time.time() - start_time
+    floor = int(time_in_sec // 60)
+    div = int(time_in_sec / 60)
+    return str(floor) + "." + str(div).zfill(2)
+
+
+def play_game(initial_bet):
+    """Where it all starts. Asks the user some input oriented questions I don't need to explain"""
+    print("Welcome to Blackjack")
+    quer = initial_bet
+    start_time = time.time()
+    play_more = True
+    while quer > 0 and play_more:
+        print("Welcome to another round.")
+        print("You have been playing for "+ str(get_time(start_time)) + " minutes.")
+        use = input("How much would you like to bet? ")
+        win = play_a_turn()
+        if win:
+            quer += int(use)
+        else:
+            quer -= int(use)
+        print("You currently have $" + str(quer))
+        play_more_input = input("Would you like to play more? (Y or N) ")
+        if play_more_input.upper() == "N":
+            play_more = False
+
+# This makes sure that we only run the play game when the blackjack
+# program is the "main" program.
+# You don't have to change anything underneath this.
+if __name__ == "__main__":
+    INITIAL_BET = int(input("Please insert how much $$$ you want to start with: "))
+    play_game(INITIAL_BET)
