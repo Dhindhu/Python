@@ -1,0 +1,15 @@
+input_string = input("")
+begin = 1
+lyft = ""
+
+for i in range(len(input_string)):
+    if i == len(input_string) - 1:
+        lyft += (input_string[i]+str(begin))
+    elif (input_string[i] == input_string[i+1]):
+        begin +=1
+        lyft += input_string[i]
+    else:
+        lyft += (input_string[i]+str(begin))
+        begin =1
+        
+print(lyft)
