@@ -1,0 +1,135 @@
+import image_io
+import math 
+# Use this file to write your filter functions!
+
+def red_stripes(image_matrix):
+    for i in range(len(image_matrix)):
+        if (i // 50) % 2 == 0:
+            for j in range(len(image_matrix[i])):
+                image_matrix[i][j] = (255, (image_matrix[i][j])[1], (image_matrix[i][j])[2])
+    return image_matrix
+
+def grayscale(image_matrix):
+    for i in range(len(image_matrix)):
+        for j in range(len(image_matrix[i])):
+            color = (((image_matrix[i][j])[0] + (image_matrix[i][j])[1] + (image_matrix[i][j])[2]) / 3)//1
+            image_matrix[i][j] = (color, color, color)
+    return image_matrix
+
+def invert_colors(image_matrix):
+    for i in range(len(image_matrix)):
+        for j in range(len(image_matrix[i])):
+            image_matrix[i][j] = (255 - (image_matrix[i][j])[0], 255 - (image_matrix[i][j])[1], 255 - (image_matrix[i][j])[2])
+    return image_matrix
+    
+
+def flip(image_matrix):
+    new_matrix = []
+    for i in range(len(image_matrix)):
+        new_matrix.append(image_matrix[(len(image_matrix)-1)-i])
+    return new_matrix
+        
+
+def blur(image_matrix):
+    copy_matrix = []
+    for i in range(len(image_matrix)):
+        row = []
+        for j in range(len(image_matrix[i])):
+            if i == 0 and j == 0:
+                box1 = image_matrix[i][j]
+                box2 = image_matrix[i][j+1]
+                box3 = image_matrix[i+1][j]
+                box4 = image_matrix[i+1][j+1]
+                ans = (math.floor((box1[0]+box2[0]+box3[0]+box4[0])/4), math.floor((box1[1]+box2[1]+box3[1]+box4[1])/4), math.floor((box1[2]+box2[2]+box3[2]+box4[2])/4))
+                row.append(ans)
+            elif i > 0 and i < len(image_matrix)-1 and j == 0:
+                box1 = image_matrix[i][j]
+                box2 = image_matrix[i][j+1]
+                box3 = image_matrix[i+1][j]
+                box4 = image_matrix[i+1][j+1]
+                box5 = image_matrix[i-1][j]
+                box6 = image_matrix[i-1][j+1]
+                ans = (math.floor((box1[0]+box2[0]+box3[0]+box4[0]+box5[0]+box6[0])/6), math.floor((box1[1]+box2[1]+box3[1]+box4[1]+box5[1]+box6[1])/6), math.floor((box1[2]+box2[2]+box3[2]+box4[2]+box5[2]+box6[2])/6))
+                row.append(ans)
+            elif i == len(image_matrix)-1 and j == 0:
+                box1 = image_matrix[i][j]
+                box2 = image_matrix[i][j+1]
+                box3 = image_matrix[i-1][j]
+                box4 = image_matrix[i-1][j+1]
+                ans = (math.floor((box1[0]+box2[0]+box3[0]+box4[0])/4), math.floor((box1[1]+box2[1]+box3[1]+box4[1])/4), math.floor((box1[2]+box2[2]+box3[2]+box4[2])/4))
+                row.append(ans)
+            elif i == len(image_matrix)-1 and j>0 and j < len(image_matrix[i])-1:
+                box1 = image_matrix[i][j]
+                box2 = image_matrix[i][j+1]
+                box3 = image_matrix[i-1][j]
+                box4 = image_matrix[i-1][j+1]
+                box5 = image_matrix[i][j-1]
+                box6 = image_matrix[i-1][j-1]
+                ans = (math.floor((box1[0]+box2[0]+box3[0]+box4[0]+box5[0]+box6[0])/6), math.floor((box1[1]+box2[1]+box3[1]+box4[1]+box5[1]+box6[1])/6), math.floor((box1[2]+box2[2]+box3[2]+box4[2]+box5[2]+box6[2])/6))
+                row.append(ans)
+            elif i == len(image_matrix)-1 and j == len(image_matrix[i])-1:
+                box1 = image_matrix[i][j]
+                box2 = image_matrix[i-1][j]
+                box3 = image_matrix[i][j-1]
+                box4 = image_matrix[i-1][j-1]
+                ans = (math.floor((box1[0]+box2[0]+box3[0]+box4[0])/4), math.floor((box1[1]+box2[1]+box3[1]+box4[1])/4), math.floor((box1[2]+box2[2]+box3[2]+box4[2])/4))
+                row.append(ans)
+            elif j == len(image_matrix[i])-1 and i < len(image_matrix)-1 and i > 0:
+                box1 = image_matrix[i][j]
+                box2 = image_matrix[i][j-1]
+                box3 = image_matrix[i-1][j]
+                box4 = image_matrix[i-1][j-1]
+                box5 = image_matrix[i+1][j-1]
+                box6 = image_matrix[i+1][j]
+                ans = (math.floor((box1[0]+box2[0]+box3[0]+box4[0]+box5[0]+box6[0])/6), math.floor((box1[1]+box2[1]+box3[1]+box4[1]+box5[1]+box6[1])/6), math.floor((box1[2]+box2[2]+box3[2]+box4[2]+box5[2]+box6[2])/6))
+                row.append(ans)
+            elif i == 0 and j == len(image_matrix[i])-1:
+                box1 = image_matrix[i][j]
+                box2 = image_matrix[i+1][j]
+                box3 = image_matrix[i][j-1]
+                box4 = image_matrix[i+1][j-1]
+                ans = (math.floor((box1[0]+box2[0]+box3[0]+box4[0])/4), math.floor((box1[1]+box2[1]+box3[1]+box4[1])/4), math.floor((box1[2]+box2[2]+box3[2]+box4[2])/4))
+                row.append(ans)
+            elif i == 0 and j > 0 and j < len(image_matrix[i])-1:
+                box1 = image_matrix[i][j]
+                box2 = image_matrix[i][j-1]
+                box3 = image_matrix[i][j+1]
+                box4 = image_matrix[i+1][j+1]
+                box5 = image_matrix[i+1][j-1]
+                box6 = image_matrix[i+1][j]
+                ans = (math.floor((box1[0]+box2[0]+box3[0]+box4[0]+box5[0]+box6[0])/6), math.floor((box1[1]+box2[1]+box3[1]+box4[1]+box5[1]+box6[1])/6), math.floor((box1[2]+box2[2]+box3[2]+box4[2]+box5[2]+box6[2])/6))
+                row.append(ans)
+            else:
+                box1 = image_matrix[i][j]
+                box2 = image_matrix[i][j-1]
+                box3 = image_matrix[i][j+1]
+                box4 = image_matrix[i+1][j+1]
+                box5 = image_matrix[i+1][j-1]
+                box6 = image_matrix[i+1][j]
+                box7 = image_matrix[i-1][j]
+                box8 = image_matrix[i-1][j-1]
+                box9 = image_matrix[i-1][j+1]
+                ans = (math.floor((box1[0]+box2[0]+box3[0]+box4[0]+box5[0]+box6[0]+box7[0]+box8[0]+box9[0])/9), math.floor((box1[1]+box2[1]+box3[1]+box4[1]+box5[1]+box6[1]+box7[1]+box8[1]+box9[1])/9), math.floor((box1[2]+box2[2]+box3[2]+box4[2]+box5[2]+box6[2]+box7[2]+box8[2]+box9[2])/9))
+                row.append(ans)
+        copy_matrix.append(row)
+    return copy_matrix
+def sepia(image_matrix):
+    for i in range(len(image_matrix)):
+        for j in range(len(image_matrix[i])):
+            one = min(math.floor((image_matrix[i][j])[0]*0.393 + (image_matrix[i][j])[1]*0.769 + (image_matrix[i][j])[2]*0.189), 255)
+            two = min(math.floor((image_matrix[i][j])[0]*0.349 + (image_matrix[i][j])[1]*0.686 + (image_matrix[i][j])[2]*0.168), 255)
+            three = min(math.floor((image_matrix[i][j])[0]*0.272 + (image_matrix[i][j])[1]*0.534 + (image_matrix[i][j])[2]*0.131), 255)
+            image_matrix[i][j] = (one, two, three)
+    return image_matrix
+            
+def threshold(image_matrix, 
+              red_threshold=(0, 255), 
+              green_threshold=(0, 255),
+              blue_threshold=(0, 255)):
+    for i in range(len(image_matrix)):
+        for j in range(len(image_matrix[i])):
+            if (image_matrix[i][j])[0] not in range(red_threshold[0], red_threshold[1]+1) or (image_matrix[i][j])[1] not in range(green_threshold[0], green_threshold[1]+1) or (image_matrix[i][j])[2] not in range(blue_threshold[0], blue_threshold[1]+1):
+                image_matrix[i][j] = (0, 0, 0)
+            else:
+                image_matrix[i][j] = image_matrix[i][j]
+    return image_matrix
